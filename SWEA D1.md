@@ -126,3 +126,132 @@ for test_case in range(1, T+1):
     print('#%d %04d/%02d/%02d' %(test_case, year, month, date))
 ```
 
+
+
+## 8) [2050. 알파벳을 숫자로 변환](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QLGxKAzQDFAUq&categoryId=AV5QLGxKAzQDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=1)
+
+```python
+alp = input()
+for i in alp:
+    print(ord(i) - 64, end=' ')
+```
+
+
+
+## 9) [2047. 신문 헤드라인](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QKsLaAy0DFAUq&categoryId=AV5QKsLaAy0DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=1)
+
+```python
+s_str = input()
+print(s_str.upper(), end='')
+```
+
+
+
+## 10) [2046. 스탬프 찍기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QKdT6AyYDFAUq&categoryId=AV5QKdT6AyYDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=1)
+
+```python
+num = int(input())
+print('#'*num)
+```
+
+
+
+## 11) [2043. 서랍의 비밀번호](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QJ_8KAx8DFAUq&categoryId=AV5QJ_8KAx8DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+a, b = map(int, input().split())
+print(a-b+1)
+```
+
+
+
+## 12) [2029. 몫과 나머지 출력하기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QGNvKAtEDFAUq&categoryId=AV5QGNvKAtEDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+T = int(input())
+for test_case in range(1, T + 1):
+	a, b = map(int, input().split())
+	print(f'#{test_case} {a // b} {a % b}')
+```
+
+
+
+## 13) [2027. 대각선 출력하기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QFuZ6As0DFAUq&categoryId=AV5QFuZ6As0DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+for i in range(5):
+    for j in range(5):
+        if i == j:
+            print('#', end='')
+        else:
+            print('+', end='')
+    print()
+```
+
+
+
+## 14) [2025. N줄덧셈](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QFZtaAscDFAUq&categoryId=AV5QFZtaAscDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+num = int(input())
+result = 0
+for i in range(1, num+1):
+    result += i
+print(result)
+```
+
+
+
+## 15) [1938. 아주 간단한 계산기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5PjsYKAMIDFAUq&categoryId=AV5PjsYKAMIDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+a, b = map(int, input().split())
+print(a+b)
+print(a-b)
+print(a*b)
+print(a//b)
+```
+
+
+
+## 16) [1933. 간단한 N의 약수](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5PhcWaAKIDFAUq&categoryId=AV5PhcWaAKIDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+N = int(input())
+for i in range(1, N + 1):
+    if N % i == 0:
+        print(i,end=' ')
+```
+
+
+
+## 17) [1936. 1대1 가위바위보](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5PjKXKALcDFAUq&categoryId=AV5PjKXKALcDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+a, b = map(int, input().split())
+if (a - b) == -1 or (a - b) == 2:
+    print('B')
+elif (a - b) == -2 or (a - b) == 1:
+    print('A')
+```
+
+
+
+## 18) [2019. 더블더블](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV5QDEX6AqwDFAUq&categoryId=AV5QDEX6AqwDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+N = int(input())
+for i in range(N+1):
+    print(2**i, end=' ')
+```
+
+
+
+## 19) [1545. 거꾸로 출력해 보아요](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=1&contestProbId=AV2gbY0qAAQBBAS0&categoryId=AV2gbY0qAAQBBAS0&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=1&pageSize=10&pageIndex=2)
+
+```python
+N = int(input())
+for i in range(N+1):
+    print(N-i, end=' ')
+```
+
