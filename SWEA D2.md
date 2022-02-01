@@ -56,7 +56,7 @@ for i in range(1, N+1):
 T = int(input())
 for test_case in range(1, T + 1):
     word = input()
-    for i in range(1, 10):
+    for i in range(1, 11):
         if word[:i] == word[i:2*i]:
             print(f'#{test_case} {i}')
             break
@@ -196,10 +196,48 @@ for test_case in range(1, T + 1):
 
 ## 25) [1284. 수도 요금 경쟁](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV189xUaI8UCFAZN&categoryId=AV189xUaI8UCFAZN&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+T = int(input())
+for test_case in range(1, T + 1):
+    P, Q, R, S, W = map(int, input().split())
+    charge_A = P * W
+    if W <= R:
+        charge_B = Q
+    else:
+        charge_B = Q + (W - R) * S
+    print(f'#{test_case} {min(charge_A, charge_B)}')
 ```
 
 
 
 ## 26) [1204. 최빈수 구하기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV13zo1KAAACFAYh&categoryId=AV13zo1KAAACFAYh&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+# 내 풀이
+T = int(input())
+for case in range(1, T + 1):
+    test_case = int(input())
+    scores = list(map(int, input().split()))
+    score_count = []
+    for i in range(len(scores)):
+        score_count.append(scores.count(scores[i]))
+    for i in range(len(scores)):
+        if score_count[i] == max(score_count):
+            print(f'#{test_case} {scores[i]}')
+            break
+            
+# 인터넷의 다른 방법
+T = int(input())
+for t in range(1,T+1):
+    n = input()
+    grade_cnt = [0]*101 # 인덱스가 점수. idx=1이 1점을 받은 인원수
+    mymax = 0 # 가장 많은 인원 수
+    grade = 0 # 그 인원수가 있던 인덱스 번호 => 점수
+    arr = list(map(int,input().split())) # 각 값은 100이하, 개수는 1000개
+    for i in range(len(arr)):
+        grade_cnt[arr[i]] += 1
+    for x in range(1,len(grade_cnt)):
+        if mymax <= grade_cnt[x]:
+            mymax = grade_cnt[x]
+            grade = x
+ 
+    print('#{} {}'.format(t, grade))
 ```
