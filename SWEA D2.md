@@ -178,18 +178,68 @@ for test_case in range(1, T + 1):
 
 ## 22) [1928. Base64 Decoder](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PR4DKAG0DFAUq&categoryId=AV5PR4DKAG0DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+decoder = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', 
+'7', '8', '9', '+', '/']
+
+T = int(input())
+for test_case in range(1, T + 1):
+    encoded_str = input()
+    new_str = ''
+
+    bin_str = ''
+    for char in encoded_str:
+        bin_char = bin(decoder.index(char))[2::]
+        while len(bin_char) < 6:
+            bin_char = '0' + bin_char
+        bin_str += bin_char
+
+    decoded_bin_char = ''
+    for i in range(0, len(bin_str), 8):
+        decoded_bin_char = ''
+        for j in range(i, i+8):
+            decoded_bin_char += bin_str[j]
+        new_str += chr(int(decoded_bin_char, 2))
+    
+    print(f'#{test_case} {new_str}')
 ```
 
 
 
 ## 23) [1288. 새로운 불면증 치료법](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV18_yw6I9MCFAZN&categoryId=AV18_yw6I9MCFAZN&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    want_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    x = 1
+    sheep_list = []
+    while sheep_list != want_list:
+        for char in str(x * N):
+            if int(char) not in sheep_list:
+                sheep_list.append(int(char))
+        sheep_list.sort()
+        x += 1
+    print(f'#{test_case} {(x-1) * N}')
 ```
 
 
 
 ## 24) [1285. 아름이의 돌 던지기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV18-stqI8oCFAZN&categoryId=AV18-stqI8oCFAZN&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    rocks = list(map(int, input().split()))
+    dis_rocks = []
+    for i in range(N):
+        dis_rocks.append(abs(rocks[i]))
+    shortest = min(dis_rocks)
+    cnt = dis_rocks.count(shortest)
+    print(f'#{test_case} {shortest} {cnt}')
+    
+# 파이썬으로 풀게 만든 문제가 아닌듯?
 ```
 
 
