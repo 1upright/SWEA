@@ -103,7 +103,7 @@ for test_case in range(1, T + 1):
 
 
 
-## 10) [어디에 단어가 들어갈 수 있을까](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PuPq6AaQDFAUq&categoryId=AV5PuPq6AaQDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
+## 10) [1979. 어디에 단어가 들어갈 수 있을까](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PuPq6AaQDFAUq&categoryId=AV5PuPq6AaQDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 
 ```python
 ```
@@ -166,12 +166,62 @@ for test_case in range(1, T + 1):
 
 ## 20) [1945. 간단한 소인수분해](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5Pl0Q6ANQDFAUq&categoryId=AV5Pl0Q6ANQDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    a = b = c = d = e = 0
+
+    while not N % 2:
+        N /= 2
+        a += 1
+
+    while not N % 3:
+        N /= 3
+        b += 1
+
+    while not N % 5:
+        N /= 5
+        c += 1
+
+    while not N % 7:
+        N /= 7
+        d += 1
+
+    while not N % 11:
+        N /= 11
+        e += 1
+
+    print(f'#{tc} {a} {b} {c} {d} {e}')
 ```
 
 
 
 ## 21) [1940. 가랏! RC카!](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PjMgaALgDFAUq&categoryId=AV5PjMgaALgDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=3)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+
+    v = 0
+    d = 0
+    for command in range(N):
+        com = list(map(int, input().split()))
+
+        if not com[0]:
+            d += v
+
+        if com[0] == 1:
+            v += com[1]
+            d += v
+
+        if com[0] == 2:
+            if v - com[1] > 0:
+                v -= com[1]
+            else:
+                v = 0
+            d += v
+
+    print(f'#{tc} {d}')
 ```
 
 
