@@ -154,12 +154,41 @@ for test_case in range(1, T + 1):
 
 ## 18) [1948. 날짜 계산기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PnnU6AOsDFAUq&categoryId=AV5PnnU6AOsDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+mth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+T = int(input())
+for tc in range(1, T+1):
+    m1, d1, m2, d2 = map(int, input().split())
+    result = 1
+    if m2 - m1 >= 2:
+        for i in range(m1+1, m2):
+            result += mth[i-1]
+        result += (mth[m1-1] - d1 + d2)
+    if m2 - m1 == 1:
+        result += (mth[m1-1] - d1 + d2)
+    if m1 == m2:
+        result += (d2 - d1)
+    print(f'#{tc} {result}')
 ```
 
 
 
 ## 19) [1946. 간단한 압축 풀기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PmkDKAOMDFAUq&categoryId=AV5PmkDKAOMDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    alphas = []
+    for i in range(N):
+        alp, x = map(str, input().split())
+        num = int(x)
+        alphas.extend([alp]*num)
+    print(f'#{tc}')
+    while alphas:
+        new_alphas = []
+        for i in range(10):
+            if alphas:
+                new_alphas.append(alphas.pop(0))
+        print(''.join(new_alphas))
 ```
 
 
