@@ -142,12 +142,139 @@ for test_case in range(1, T + 1):
 
 ## 16) [1959. 두 개의 숫자열](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PpoFaAS4DFAUq&categoryId=AV5PpoFaAS4DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+    B = list(map(int, input().split()))
+
+    if N >= M:
+        result_box = []
+        for i in range(N-M+1):
+            result = 0
+            for j in range(M):
+                result += (B[j] * A[j+i])
+            result_box.append(result)
+        max_result = max(result_box)
+
+    else:
+        result_box = []
+        for i in range(M-N+1):
+            result = 0
+            for j in range(N):
+                result += (A[j] * B[j+i])
+            result_box.append(result)
+        max_result = max(result_box)
+
+    print(f'#{tc} {max_result}')
 ```
 
 
 
 ## 17) [1954. 달팽이 숫자](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PobmqAPoDFAUq&categoryId=AV5PobmqAPoDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+# 처음 했던 짓
+T = int(input())
+import copy
+for tc in range(1, T+1):
+    N = int(input())
+    snail_line = [0]*N
+    snail = []
+    for i in range(N):
+        snail.append(copy.deepcopy(snail_line))
+
+    for i in range(N):
+        snail[0][i] += i+1
+    for i in range(N-1):
+        snail[i+1][N-1] += N+i+1
+    for i in range(N-1):
+        snail[N-1][N-i-2] += 2*N+i
+    for i in range(N-2):
+        snail[N-i-2][0] += 3*N+i-1
+    
+    ...
+    
+## while 돌려도 안으로 들어가는 게 좀 무리 같아서 마지막 숫자부터 집어넣어봄
+import copy
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    print(f'#{tc}')
+    snail_line = [0]*N
+    snail = []
+    for i in range(N):
+        snail.append(copy.deepcopy(snail_line))
+    last = N ** 2
+
+    if N % 2:
+        a = N//2
+        b = N//2
+        snail[a][b] = last
+        num = 1
+        cnt = 0
+        while 1:
+            cnt += 1
+            for i in range(cnt-1):
+                b -= 1
+                last -= 1
+                snail[a][b] = last
+            if last == 1:
+                break
+            else:
+                b -= 1
+                last -= 1
+                snail[a][b] = last
+            for i in range(cnt):
+                a += 1
+                last -= 1
+                snail[a][b] = last
+            cnt += 1
+            for i in range(cnt):
+                b += 1
+                last -= 1
+                snail[a][b] = last
+            for i in range(cnt):
+                a -= 1
+                last -= 1
+                snail[a][b] = last
+        for i in range(N):
+            print(*snail[i])
+
+    else:
+        a = N//2
+        b = N//2 - 1
+        snail[a][b] = last
+        num = 1
+        cnt = 0
+        while 1:
+            cnt += 1
+            for i in range(cnt):
+                b += 1
+                last -= 1
+                snail[a][b] = last
+            for i in range(cnt):
+                a -= 1
+                last -= 1
+                snail[a][b] = last
+            cnt += 1
+            for i in range(cnt-1):
+                b -= 1
+                last -= 1
+                snail[a][b] = last
+            if last == 1:
+                break
+            else:
+                b -= 1
+                last -= 1
+                snail[a][b] = last
+            for i in range(cnt):
+                a += 1
+                last -= 1
+                snail[a][b] = last
+        for i in range(N):
+            print(*snail[i])
+
+# 이렇게 하는거 맞냐..? 알고리즘 배워서 다시 해봐야 할듯
 ```
 
 
