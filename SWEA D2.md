@@ -130,12 +130,43 @@ for test_case in range(1, T + 1):
 
 ## 14) [1966. 숫자를 정렬하자](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PrmyKAWEDFAUq&categoryId=AV5PrmyKAWEDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1,T+1):
+    N = int(input())
+    nums = list(map(int,input().split()))
+    nums.sort()
+    ans =  ' '.join(map(str, nums))
+    print(f'#{tc} {ans}')
 ```
 
 
 
 ## 15) [1961. 숫자 배열 회전](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5Pq-OKAVYDFAUq&categoryId=AV5Pq-OKAVYDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1,T+1):
+    N = int(input())
+    matrix = []
+    for i in range(N):
+        row = list(map(str, input().split()))
+        matrix.append(row)
+    print(f'#{tc}')
+    result = [(['']*3) for _ in range(N)]
+
+    for i in range(N):
+        for j in range(N):
+            result[i][0] += matrix[N-j-1][i]
+
+    for i in range(N):
+        for j in range(N):
+            result[i][1] += matrix[N-i-1][N-j-1]
+
+    for i in range(N):
+        for j in range(N):
+            result[i][2] += matrix[j][N-i-1]
+
+    for i in range(N):
+        print(*result[i])
 ```
 
 
