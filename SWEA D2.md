@@ -106,24 +106,100 @@ for test_case in range(1, T + 1):
 ## 10) [1979. 어디에 단어가 들어갈 수 있을까](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PuPq6AaQDFAUq&categoryId=AV5PuPq6AaQDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N, K = map(int, input().split())
+    arr = [[0]*(N+2)] + [[0]+list(map(int, input().split()))+[0] for _ in range(N)] + [[0]*(N+2)]
+    cnt = 0
+    for i in range(N+2):
+        for j in range(N-K+3):
+            check = 0
+            for k in range(K):
+                check += arr[i][j+k]
+            if check == K:
+                if arr[i][j+K] == 0 and arr[i][j-1] == 0:
+                    cnt += 1
+
+    for i in range(N+2):
+        for j in range(N-K+3):
+            check = 0
+            for k in range(K):
+                check += arr[j+k][i]
+            if check == K:
+                if arr[j+K][i] == 0 and arr[j-1][i] == 0:
+                    cnt += 1
+    print(f'#{tc} {cnt}')
 ```
 
 
 
 ## 11) [1976. 시각 덧셈](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PttaaAZIDFAUq&categoryId=AV5PttaaAZIDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    t1, m1, t2, m2 = map(int, input().split())
+    time = t1 + t2
+
+    minute = m1 + m2
+    if minute > 60:
+        time += 1
+        minute -= 60
+
+    if time > 12:
+        time -= 12
+
+    print(f'#{tc} {time} {minute}')
 ```
 
 
 
 ## 12) [1974. 스도쿠 검증](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5Psz16AYEDFAUq&categoryId=AV5Psz16AYEDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    arr = [list(map(int, input().split())) for _ in range(9)]
+    result = 1
+    for i in range(9):
+        for j in range(8):
+            for k in range(j+1, 9):
+                if arr[i][j] == arr[i][k]:
+                    result = 0
+                    break
+
+    for i in range(9):
+        for j in range(8):
+            for k in range(j + 1, 9):
+                if arr[j][i] == arr[k][i]:
+                    result = 0
+                    break
+
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            numbers = []
+            for k in range(3):
+                for l in range(3):
+                    numbers.append(arr[i+k][j+l])
+            if len(set(numbers)) != 9:
+                result = 0
+                break
+
+    print(f'#{tc} {result}')
 ```
 
 
 
 ## 13) [1970. 쉬운 거스름돈](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PsIl6AXIDFAUq&categoryId=AV5PsIl6AXIDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=2)
 ```python
+T = int(input())
+money = [50000, 10000, 5000, 1000, 500, 100, 50, 10]
+for tc in range(1, T+1):
+    N = int(input())
+    cnt = []
+    for i in range(8):
+        cnt.append(N//money[i])
+        N %= money[i]
+    print(f'#{tc}')
+    print(*cnt)
 ```
 
 
@@ -234,7 +310,7 @@ for tc in range(1, T+1):
     snail_line = [0]*N
     snail = []
     for i in range(N):
-        snail.append(copy.deepcopy(snail_line))
+        snail.append(copy.deepcopy(snail_line)) # 이중 리스트를 만들고 싶어서 딥카피를 했는데 알고보니 다른 잡기술이 있었다
     last = N ** 2
 
     if N % 2:
@@ -243,9 +319,9 @@ for tc in range(1, T+1):
         snail[a][b] = last
         num = 1
         cnt = 0
-        while 1:
+        while 1: # break 나올때까지 돌린다는 마인드
             cnt += 1
-            for i in range(cnt-1):
+            for i in range(cnt-1): # 왼쪽. 왼쪽으로 갈때는 항상 마지막 줄(시작점이 있는 줄)일수도 있으니
                 b -= 1
                 last -= 1
                 snail[a][b] = last
@@ -255,16 +331,16 @@ for tc in range(1, T+1):
                 b -= 1
                 last -= 1
                 snail[a][b] = last
-            for i in range(cnt):
+            for i in range(cnt): # 아래쪽
                 a += 1
                 last -= 1
                 snail[a][b] = last
             cnt += 1
-            for i in range(cnt):
+            for i in range(cnt): # 오른쪽
                 b += 1
                 last -= 1
                 snail[a][b] = last
-            for i in range(cnt):
+            for i in range(cnt): # 위쪽
                 a -= 1
                 last -= 1
                 snail[a][b] = last
@@ -279,16 +355,16 @@ for tc in range(1, T+1):
         cnt = 0
         while 1:
             cnt += 1
-            for i in range(cnt):
+            for i in range(cnt): # 오른쪽
                 b += 1
                 last -= 1
                 snail[a][b] = last
-            for i in range(cnt):
+            for i in range(cnt): # 위쪽
                 a -= 1
                 last -= 1
                 snail[a][b] = last
             cnt += 1
-            for i in range(cnt-1):
+            for i in range(cnt-1): # 왼쪽. 마찬가지로 마지막일 수도 있으니
                 b -= 1
                 last -= 1
                 snail[a][b] = last
@@ -298,7 +374,7 @@ for tc in range(1, T+1):
                 b -= 1
                 last -= 1
                 snail[a][b] = last
-            for i in range(cnt):
+            for i in range(cnt): # 아래쪽
                 a += 1
                 last -= 1
                 snail[a][b] = last
@@ -306,6 +382,40 @@ for tc in range(1, T+1):
             print(*snail[i])
 
 # 이렇게 하는거 맞냐..? 알고리즘 배워서 다시 해봐야 할듯
+```
+
+```python
+# 알고리즘 배운 후
+T = int(input())
+for tc in range(1,T+1):
+    N = int(input())
+
+    arr = [[0]*N for _ in range(N)] # 2차원 배열 만들기
+    di = [0, 1, 0, -1] # 우 하 좌 상(달팽이의 움직이는 순서)
+    dj = [1, 0, -1, 0]
+    cnt = 1
+    i = j = 0
+    arr[i][j] = 1
+
+    while 1:
+        for k in range(4):
+            while 1:
+                cnt += 1
+                i += di[k]
+                j += dj[k]
+                if 0<=i<N and 0<=j<N and arr[i][j] == 0: # i와 j가 가능한 수이고 arr[i][j]가 비어있다면
+                    arr[i][j] = cnt
+                else: # 아니라면 더해준 것들을 모두 원상태로
+                    cnt -= 1
+                    i -= di[k]
+                    j -= dj[k]
+                    break
+        if cnt == N**2: # N의 제곱수까지 다 넣었으면 break
+            break
+
+    print(f'#{tc}')
+    for i in range(N):
+        print(*arr[i])
 ```
 
 
