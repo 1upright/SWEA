@@ -67,18 +67,74 @@ for test_case in range(1, T + 1):
 ## 4) [2005. 파스칼의 삼각형](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5P0-h6Ak4DFAUq&categoryId=AV5P0-h6Ak4DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 
 ```python
+# 첫 풀이
+import math
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    print(f'#{tc}')
+    for i in range(N):
+        val = []
+        for j in range(i+1):
+            val.append(math.factorial(i)//math.factorial(j)//math.factorial(i-j))
+        print(*val)
+        
+        
+# 배열 풀이
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    print(f'#{tc}')
+    arr = []
+    for i in range(1, N+1):
+        arr.append([0]*i)
+
+    arr[0][0] = 1
+    for i in range(1, N):
+        arr[i][0] = 1
+        arr[i][i] = 1
+        for j in range(1, i):
+            arr[i][j] = arr[i-1][j-1] + arr[i-1][j]
+            
+    for i in range(N):
+        print(*arr[i])
 ```
 
 
 
 ## 5) [2001. 파리 퇴치](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PzOCKAigDFAUq&categoryId=AV5PzOCKAigDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N, M = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+
+    cnts = []
+    for i in range(N-M+1):
+        for j in range(N-M+1):
+            cnt = 0
+            for k in range(M):
+                for l in range(M):
+                    cnt += arr[i+k][j+l]
+            cnts.append(cnt)
+    print(f'#{tc} {max(cnts)}')
+
 ```
 
 
 
 ## 6) [1989. 초심자의 회문 검사](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PyTLqAf4DFAUq&categoryId=AV5PyTLqAf4DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    word = input()
+    reverse_word = []
+    for i in range(len(word)):
+        reverse_word.append(list(word)[len(word)-i-1])
+    if list(word) == reverse_word:
+        print(f'#{tc} 1')
+    else:
+        print(f'#{tc} 0')
 ```
 
 
@@ -86,12 +142,29 @@ for test_case in range(1, T + 1):
 ## 7) [1986. 지그재그 숫자](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PxmBqAe8DFAUq&categoryId=AV5PxmBqAe8DFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 
 ```python
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    res = 0
+    for i in range(1, N+1):
+        if i%2:
+            res += i
+        else:
+            res -= i
+    print(f'#{tc} {res}')
 ```
 
 
 
 ## 8) [1984. 중간 평균값 구하기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5Pw_-KAdcDFAUq&categoryId=AV5Pw_-KAdcDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 ```python
+T = int(input())
+for tc in range(1,T+1):
+    nums = list(map(int, input().split()))
+    nums.sort()
+    nums.pop(9)
+    nums.pop(0)
+    print(f'#{tc} {round(sum(nums)/8)}')
 ```
 
 
@@ -99,6 +172,21 @@ for test_case in range(1, T + 1):
 ## 9) [1983. 조교의 성적 매기기](https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=2&contestProbId=AV5PwGK6AcIDFAUq&categoryId=AV5PwGK6AcIDFAUq&categoryType=CODE&problemTitle=&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=2&pageSize=10&pageIndex=1)
 
 ```python
+grade = ['A+', 'A0', 'A-', 'B+', 'B0', 'B-', 'C+', 'C0', 'C-', 'D0']
+T = int(input())
+for tc in range(1, T+1):
+    N, K = map(int, input().split())
+    scores = []
+    unit = N // 10
+    for _ in range(N):
+        M, F, H = map(int, input().split())
+        score = M * 0.35 + F * 0.45 + H * 0.2
+        scores.append(score)
+    score_K = scores[K-1]
+    scores.sort()
+    for i in range(10):
+        if scores[i*unit] <= score_K < scores[(i+1)*unit]:
+            print(f'#{tc} {grade[9-i]}')
 ```
 
 
